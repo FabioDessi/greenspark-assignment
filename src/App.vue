@@ -2,7 +2,7 @@
 
 <template>
   <main>
-    <h1>Greenspark Assignment</h1>
+    <h1 class="text-2xl">Greenspark Assignment</h1>
   </main>
 </template>
 
