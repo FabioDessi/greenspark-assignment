@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
-import ProductWidget from '../components/ProductWidget.vue';
+import type { Meta, StoryObj } from '@storybook/vue3'
+import ProductWidget from '../components/ProductWidget.vue'
 
 const meta: Meta<typeof ProductWidget> = {
   title: 'Components/ProductWidget',
   component: ProductWidget,
   argTypes: {
     selectedColor: {
-      options: ['blue', 'green', 'beige', 'white', 'black'], 
+      options: ['blue', 'green', 'beige', 'white', 'black']
     },
     active: { control: 'boolean' },
-    linked: { control: 'boolean' },
+    linked: { control: 'boolean' }
   },
   tags: ['autodocs'],
   args: {
@@ -19,54 +19,52 @@ const meta: Meta<typeof ProductWidget> = {
     action: 'collects',
     active: false,
     linked: false,
-    selectedColor: 'blue',
-  },
-};
+    selectedColor: 'blue'
+  }
+}
 
-export default meta;
+export default meta
 
-type ProductWidgetStory = StoryObj<typeof meta>;
+type ProductWidgetStory = StoryObj<typeof meta>
 
 export const Default: ProductWidgetStory = {
   args: {
-    selectedColor: 'blue',
-  },
-};
+    selectedColor: 'blue'
+  }
+}
 
 export const DefaultGreen: ProductWidgetStory = {
   args: {
-    selectedColor: 'green',
-  },
-};
+    selectedColor: 'green'
+  }
+}
 
 export const DefaultBeige: ProductWidgetStory = {
   args: {
-    selectedColor: 'beige',
-  },
-};
+    selectedColor: 'beige'
+  }
+}
 
 export const LinkedToPublicProfile: ProductWidgetStory = {
   args: {
-    linked: true,
-  },
-};
+    linked: true
+  }
+}
 
 export const UnlinkedToPublicProfile: ProductWidgetStory = {
   args: {
-    linked: false,
-  },
-};
+    linked: false
+  }
+}
 
 export const ActiveBadge: ProductWidgetStory = {
   args: {
-    active: true,
-  },
-};
+    active: true
+  }
+}
 
 export const InactiveBadge: ProductWidgetStory = {
   args: {
-    active: false,
-  },
-};
-
-
+    active: false
+  }
+}
