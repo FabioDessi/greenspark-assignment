@@ -2,13 +2,14 @@
 import ProductWidget from './components/ProductWidget.vue'
 import { ref, onMounted } from 'vue'
 
-import type { ProductWidgetProps } from './types.ts'
+import type { Ref } from 'vue'
+import type { ProductWidgetProps, UpdateWidgetStateParams } from './types'
 
-const data: ProductWidgetProps = ref([])
+const data: Ref<ProductWidgetProps[]> = ref([])
 const loading = ref(true)
 const errorMessage = ref('')
 
-function updateWidgetState({ id, selectedColor, linked, active }) {
+function updateWidgetState({ id, selectedColor, linked, active }: UpdateWidgetStateParams) {
   const widgetIndex = data.value.findIndex((widget) => widget.id === id)
 
   if (widgetIndex === -1) return // Early return if widget is not found

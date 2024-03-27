@@ -1,33 +1,28 @@
 <script setup lang="ts">
 import GSLogo from '../assets/gs-logo.vue'
 import InfoIcon from '../assets/info-icon.vue'
-import { ref, computed } from 'vue'
-import { colorOptions } from '../config.ts'
+import { ref, defineProps, defineEmits } from 'vue'
+import { colorOptions } from '../config'
 
-import type { ProductWidgetProps } from '../types.ts'
+import type {
+  ProductWidgetProps,
+  WidgetPropertyUpdate,
+  WidgetColor,
+  WidgetUpdatePayload
+} from '../types.ts'
 
 const emit = defineEmits(['updateWidgetState'])
 const props = defineProps<ProductWidgetProps>()
-
 const showTooltip = ref(false)
 
 function toggleTooltip() {
   showTooltip.value = !showTooltip.value
 }
 
-function updateWidgetProperty(property, value) {
-  const payload = { id: props.id }
-  payload[property] = value
-
+function updateWidgetProperty(property: keyof WidgetPropertyUpdate, value: boolean | WidgetColor) {
+  const payload: WidgetUpdatePayload = { id: props.id, [property]: value }
   emit('updateWidgetState', payload)
 }
-
-const bgColorClass = computed(() => {
-  const colorClass = `bg-${props.selectedColor}`
-  // Check if the constructed class name exists in your colorOptions.
-  const isValidColor = colorOptions.some((option) => option.class === colorClass)
-  return isValidColor ? colorClass : 'bg-gs-blue' // Default to 'bg-gs-blue' if not valid.
-})
 </script>
 
 <template>
@@ -54,7 +49,7 @@ const bgColorClass = computed(() => {
             role="link"
             aria-label="tooltip"
             :aria-haspopup="true"
-            :aria-expanded="showTooltip.toString()"
+            :aria-expanded="showTooltip"
             @mouseover="showTooltip = true"
             @focus="showTooltip = true"
             @mouseout="showTooltip = false"
@@ -89,7 +84,9 @@ const bgColorClass = computed(() => {
           type="checkbox"
           id="linked"
           :checked="props.linked"
-          @change="(event) => updateWidgetProperty('linked', event.target.checked)"
+          @change="
+            (event) => updateWidgetProperty('linked', (event.target as HTMLInputElement).checked)
+          "
           class="appearance-none checked:appearance-auto w-[18px] h-[18px] rounded border-2 border-gs-black accent-gs-green relative peer cursor-pointer before:content[''] before:absolute before:block before:h-[36px] before:w-[36px] before:rounded-full before:bg-gs-light-green before:opacity-0 before:-translate-y-2/4 before:-translate-x-2/4 before:top-2/4 before:left-2/4 hover:before:opacity-10"
         />
       </div>

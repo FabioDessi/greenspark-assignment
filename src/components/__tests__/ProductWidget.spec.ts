@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ProductWidget from '../ProductWidget.vue'
 
-import type { ProductWidgetProps } from '../types'
+import type { ProductWidgetProps } from '../../types'
 
 const mockProps: ProductWidgetProps = {
   id: 1,
@@ -29,7 +29,7 @@ describe('ProductWidget', () => {
     expect(spanElements[1].text()).toBe(`${mockProps.amount} ${mockProps.type}`)
 
     const linkedCheckbox = wrapper.find('#linked')
-    expect(linkedCheckbox.element.checked).toBe(mockProps.linked)
+    expect((linkedCheckbox.element as HTMLInputElement).checked).toBe(mockProps.linked)
 
     const activeToggle = wrapper.find('[data-test="active-toggle"]')
     expect(activeToggle.classes()).toContain('border-[#B0B0B0]')
@@ -46,42 +46,42 @@ describe('ProductWidget', () => {
   })
 
   it('emits updateWidgetState when the linked checkbox is toggled', async () => {
-    const wrapper = setupAndMount();
+    const wrapper = setupAndMount()
 
     // Find the checkbox and trigger a click event
-    const linkedCheckbox = wrapper.find('#linked');
+    const linkedCheckbox = wrapper.find('#linked')
     await linkedCheckbox.setValue(!mockProps.linked)
 
     // Check if the emit was called correctly
-    expect(wrapper.emitted()).toHaveProperty('updateWidgetState');
-    const emittedEvent = wrapper.emitted('updateWidgetState');
-    expect(emittedEvent?.[0]).toEqual([{ id: mockProps.id, linked: !mockProps.linked }]);
-  });
+    expect(wrapper.emitted()).toHaveProperty('updateWidgetState')
+    const emittedEvent = wrapper.emitted('updateWidgetState')
+    expect(emittedEvent?.[0]).toEqual([{ id: mockProps.id, linked: !mockProps.linked }])
+  })
 
   it('emits updateWidgetState when a color option is clicked', async () => {
-    const wrapper = setupAndMount();
-    const newColor = 'blue';
+    const wrapper = setupAndMount()
+    const newColor = 'blue'
 
     // Find the div for the new color and trigger a click event
-    const newBadgeColor = wrapper.find(`[data-test="badge-color-${newColor}"]`);
-    await newBadgeColor.trigger('click');
+    const newBadgeColor = wrapper.find(`[data-test="badge-color-${newColor}"]`)
+    await newBadgeColor.trigger('click')
 
     // Verify the emit
-    expect(wrapper.emitted()).toHaveProperty('updateWidgetState');
-    const emittedEvent = wrapper.emitted('updateWidgetState');
-    expect(emittedEvent?.[0]).toEqual([{ id: mockProps.id, selectedColor: newColor }]);
-  });
+    expect(wrapper.emitted()).toHaveProperty('updateWidgetState')
+    const emittedEvent = wrapper.emitted('updateWidgetState')
+    expect(emittedEvent?.[0]).toEqual([{ id: mockProps.id, selectedColor: newColor }])
+  })
 
   it('emits updateWidgetState when the active toggle is clicked', async () => {
-    const wrapper = setupAndMount();
+    const wrapper = setupAndMount()
 
     // Find the active toggle and click it
-    const activeToggle = wrapper.find('[data-test="active-toggle"]');
-    await activeToggle.trigger('click');
+    const activeToggle = wrapper.find('[data-test="active-toggle"]')
+    await activeToggle.trigger('click')
 
     // Assert that the correct event was emitted with the right payload
-    expect(wrapper.emitted()).toHaveProperty('updateWidgetState');
-    const emittedEvent = wrapper.emitted('updateWidgetState');
-    expect(emittedEvent?.[0]).toEqual([{ id: mockProps.id, active: !mockProps.active }]);
-  });
+    expect(wrapper.emitted()).toHaveProperty('updateWidgetState')
+    const emittedEvent = wrapper.emitted('updateWidgetState')
+    expect(emittedEvent?.[0]).toEqual([{ id: mockProps.id, active: !mockProps.active }])
+  })
 })

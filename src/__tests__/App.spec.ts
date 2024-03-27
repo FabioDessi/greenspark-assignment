@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, afterEach, afterAll } from 'vitest'
+import { describe, it, expect, vi, afterAll } from 'vitest'
 import { mount, flushPromises } from '@vue/test-utils'
 import App from '../App.vue'
 
