@@ -28,7 +28,7 @@ describe('ProductWidget', () => {
     expect(spanElements[0].text()).toBe(`This product ${mockProps.action}`)
     expect(spanElements[1].text()).toBe(`${mockProps.amount} ${mockProps.type}`)
 
-    const linkedCheckbox = wrapper.find('#linked')
+    const linkedCheckbox = wrapper.find('#linked-1')
     expect((linkedCheckbox.element as HTMLInputElement).checked).toBe(mockProps.linked)
 
     const activeToggle = wrapper.find('[data-test="active-toggle"]')
@@ -49,7 +49,7 @@ describe('ProductWidget', () => {
     const wrapper = setupAndMount()
 
     // Find the checkbox and trigger a click event
-    const linkedCheckbox = wrapper.find('#linked')
+    const linkedCheckbox = wrapper.find('#linked-1')
     await linkedCheckbox.setValue(!mockProps.linked)
 
     // Check if the emit was called correctly

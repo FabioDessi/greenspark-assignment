@@ -54,8 +54,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main>
-    <div class="container mx-auto p-8 rounded-lg max-w-[851px]">
+  <main class="flex flex-col justify-center h-screen">
+    <div
+      class="widget-wrapper container mx-auto p-9 rounded-lg max-w-[851px] h-[419px] bg-[#F9F9F9]"
+    >
       <h3 class="font-cabin font-bold text-3xl">Per product widgets</h3>
       <hr class="mt-3 mb-5 border-2 border-[#B0B0B0]" />
       <span v-if="loading" class="block font-cabin font-bold text-xl text-center py-4"
@@ -81,3 +83,15 @@ onMounted(async () => {
     </div>
   </main>
 </template>
+
+<style scoped>
+.widget-wrapper {
+  box-shadow:
+    0px 42px 76px rgba(0, 0, 0, 0.05),
+    0px 27.22px 44.51px rgba(0, 0, 0, 0.038),
+    0px 16.18px 24.21px rgba(0, 0, 0, 0.034),
+    0px 8.4px 12.35px rgba(0, 0, 0, 0.025),
+    0px 3.42px 6.19px rgba(0, 0, 0, 0.019),
+    0px 0.78px 2.99px rgba(0, 0, 0, 0.012);
+}
+</style>
