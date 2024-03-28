@@ -1,45 +1,64 @@
-# greenspark-assignment
+# Greenspark Assignment
 
-This template should help get you started developing with Vue 3 in Vite.
+## Overview
 
-## Recommended IDE Setup
+This is my attempt on the technical assignment, my goal was to avoid using too many libraries and keep the code base simple given the requirements, for this reason i decided to use tailwind for styling and avoid any design system or ui kit library.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+For testing i've used vitest with vue test utils for unit testing, and storybook for visuals.
 
-## Type Support for `.vue` Imports in TS
+Given the nature of the assignment, instead of using Vuex for state management, i've opted for
+the emit solution, updating the state when interacting with the widget for the _active_ _linked_ and _selectedColor_ options.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Setup & Installation
 
-## Customize configuration
+**Prerequisites:**
+Node.js (>= 18.x)
+Yarn or npm
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+**Installation:**
 
-## Project Setup
+Clone the repository:
 
-```sh
-npm install
+```bash
+git clone https://github.com/FabioDessi/greenspark-assignment.git
 ```
 
-### Compile and Hot-Reload for Development
+Navigate to the project directory:
 
-```sh
-npm run dev
+```bash
+cd greenspark-assignment
 ```
 
-### Type-Check, Compile and Minify for Production
+Install dependencies:
 
-```sh
-npm run build
+```bash
+npm install # or yarn install
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+Start the development server:
 
-```sh
-npm run test:unit
+```bash
+npm run dev # or yarn run dev
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Visit [http://localhost:5173](http://localhost:5173) (or the port displayed in your terminal) to view the application.
 
-```sh
-npm run lint
+## Testing
+
+Run the test suite in watch mode:
+
+```bash
+npm run test:unit # or yarn run test:unit
+```
+
+## Linting
+
+Check code quality and adherence to standards using:
+
+```bash
+npm run lint # or yarn run lint
+```
+
+```bash
+npm run format # or yarn run format
 ```
