@@ -48,7 +48,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="w-56">
+  <div class="w-56 mb-9">
     <div
       data-test="badge"
       class="rounded-md w-56 py-2.5 px-3 flex flex-row flex-wrap justify-start mb-2.5"
@@ -77,8 +77,10 @@ onUnmounted(() => {
     </div>
     <div>
       <div class="flex justify-between mb-2.5">
-        <label class="flex flex-row" :for="`linked-${props.id}`">
-          <span class="font-cabin text-sm text-gs-green">Link to public profile</span>
+        <div class="flex flex-row">
+          <label class="font-cabin text-sm text-gs-green" :for="`linked-${props.id}`">
+            Link to public profile
+          </label>
           <a
             tabindex="0"
             role="link"
@@ -87,14 +89,14 @@ onUnmounted(() => {
             :aria-expanded="showTooltip"
             @mouseover="showTooltipNow"
             @mouseout="hideTooltipSoon"
-            class="focus:outline-none focus:ring-gray-300 rounded-full focus:ring-offset-2 focus:ring-2 focus:bg-gray-200 relative mt-20 md:mt-0"
+            class="focus:outline-none focus:ring-gray-300 rounded-full focus:ring-offset-2 focus:ring-2 focus:bg-gray-200 relative ml-1"
           >
             <InfoIcon class="cursor-pointer" />
             <div
               v-show="showTooltip"
               id="tooltip"
               role="tooltip"
-              class="tooltip-wrapper z-20 -mt-20 w-[250px] absolute left-0 ml-5 bg-white py-4 px-6 rounded"
+              class="tooltip-wrapper z-20 w-[250px] absolute bg-white py-4 px-6 rounded mt-2 -ml-28 md:-mt-20 md:left-0 md:ml-5"
               @mouseover="showTooltipNow"
               @mouseout="hideTooltipSoon"
             >
@@ -110,7 +112,7 @@ onUnmounted(() => {
               </div>
             </div>
           </a>
-        </label>
+        </div>
         <input
           type="checkbox"
           :id="`linked-${props.id}`"

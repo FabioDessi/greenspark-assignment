@@ -56,7 +56,7 @@ onMounted(async () => {
 <template>
   <main class="flex flex-col justify-center h-screen">
     <div
-      class="widget-wrapper container mx-auto p-9 rounded-lg max-w-[851px] h-[419px] bg-[#F9F9F9]"
+      class="widget-wrapper container mx-auto p-9 rounded-lg md:max-w-[851px] max-w-[331px] md:h-[419px] bg-[#F9F9F9]"
     >
       <h3 class="font-cabin font-bold text-3xl">Per product widgets</h3>
       <hr class="mt-3 mb-5 border-2 border-[#B0B0B0]" />
@@ -66,7 +66,10 @@ onMounted(async () => {
       <span v-if="errorMessage" class="block font-cabin font-bold text-xl text-center py-4">{{
         errorMessage
       }}</span>
-      <div v-if="!loading && !errorMessage" class="flex flex-row justify-between">
+      <div
+        v-if="!loading && !errorMessage"
+        class="flex flex-col flex-wrap content-center md:flex-row justify-between"
+      >
         <div v-for="widget in data" :key="widget.id" class="flex flex-row">
           <ProductWidget
             :id="widget.id"
